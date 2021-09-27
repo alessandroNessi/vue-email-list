@@ -5,28 +5,22 @@ var app = new Vue({
         userId :0
     },
     methods:{
-        requestUser(){
-            axios.get("https://flynn.boolean.careers/exercises/api/random/mail")
-            .then((answer)=>{
-                if(answer.data.success){
-                    let mail=answer.data.response;
-                    return mail;
-                }
-            });
-        },
-        addUser(data){
-            // console.log(data);
-            this.usersMails.push({"email":data});
-            this.userId++;
+        addUser(n){
+            if(n>0){
+                axios.get("https://flynn.boolean.careers/exercises/api/random/mail")
+                .then((response)=>{
+                    if(response.data.success){
+                        this.usersMails.push({'id':this.userId,'email': response.data.response});
+                        this.userId++;
+                        alert(this.userId);
+                        this.addUser(n-1);
+                    }
+                });
+            }
         }
     },
     mounted:
         function(){
-            console.log(this.requestUser());
-            // while(this.usersMails.length<10){
-                // let temp= this.requestUser();
-                // console.log(temp);
-                // this.addUser(temp);
-            // }
+                this.addUser(10);
         }
 });
