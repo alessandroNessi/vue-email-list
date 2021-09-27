@@ -1,8 +1,30 @@
 *{
-    margin: 0;
+    margin:0;
     padding: 0;
     box-sizing: border-box;
 }
+input{
+    margin: 50px;
+}
 ul{
     list-style: none;
+}
+.element{
+    padding: 10px;
+    border: 1px solid gray;
+    width: 350px;
+    display: flex;
+    justify-content: space-between;
+}
+.fas{
+    margin-left: 10px;
+    cursor: pointer;
+}
+#root{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#changeValue{
+    background-color: lightgoldenrodyellow;
 }

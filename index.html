@@ -4,14 +4,23 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="style/style.css">
         <title>Document</title>
     </head>
     <body>
-        <h1>boolean email list</h1>
         <div id="root">
-            <ul class="usersMails">
-                <li v-for="user in usersMails">{{user.email}}</li>
+            <h1>boolean email list</h1>
+            <input id="numberEmailToAdd" v-if="onChange===false" type="text" @keyup.enter="addUser()" v-model="n" placeholder="inserisci il numero di utenti">
+            <input id="changeValue" v-else type="text" @keyup.enter="change()" placeholder="inserisci la nuova mail e premi invio">
+            <ul v-if="n<=1" class="usersMails">
+                <div v-for="(user, index) in usersMails" :key="user.index" class="element">
+                    <li >{{user.email}}</li>
+                    <div>
+                        <i @mouseup="startChange(index)" class="fas fa-edit"></i>
+                        <i @mouseup="deleteUser(index)" class="fas fa-trash-alt"></i>
+                    </div>
+                </div>
             </ul>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
