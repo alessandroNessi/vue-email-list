@@ -7,5 +7,12 @@ var app = new Vue({
 
     },
     mounted:
-        function(){console.log("page loaded")}
+        function(){
+            axios.get("https://flynn.boolean.careers/exercises/api/random/mail")
+            .then((response)=>{
+                if(response.data.success){
+                    console.log(response);
+                }
+            });
+    }
 });
